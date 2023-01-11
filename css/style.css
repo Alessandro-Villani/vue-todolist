@@ -11,3 +11,8 @@
 #root .form-check-input{
     cursor: pointer;
 }
+
+.form-check-label.done{
+    text-decoration: line-through;
+}
+

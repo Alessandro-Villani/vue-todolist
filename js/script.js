@@ -23,9 +23,39 @@ console.log('VUE OK', Vue);
 const app = Vue.createApp({
     data(){
         return{
-
+            newTask: '',
+            tasks: [
+                {
+                    task: 'Fare la spesa',
+                    done: false,
+                },
+                {
+                    task: 'Pulire la cucina',
+                    done: false,
+                },
+                {
+                    task: 'Riordinare documenti',
+                    done: true,
+                },
+            ]
         }
     },
+    methods:{
+        clearTaskBox(){
+            this.newTask = '';
+        },
+        addTask(){
+            console.log('click');
+            if(this.newTask) {
+                const addedTask = {
+                    task: this.newTask,
+                    done: false
+                }
+                this.tasks.push(addedTask);
+                this.clearTaskBox();
+            }
+        }
+    }
 });
 
 app.mount('#root');
