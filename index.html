@@ -25,8 +25,13 @@
                     <button class="btn btn-outline-success" type="button" id="button-addon2" @click="addTask()">Aggiungi</button>
                   </div>
             </div>
+            <div v-if="tasks.length" class="col-6 offset-3 d-flex justify-content-center mb-3">
+                <button class="btn btn-danger me-2" @click="clearAllTasks()"><i class="fa-solid fa-trash me-2"></i> Elimina tutto</button>
+                <button class="btn me-2" :class="doneFilter ? 'btn-success' : 'btn-outline-success'" @click="toggleDoneFilter()">Solo Eseguiti</button>
+                <button class="btn" :class="notDoneFilter ? 'btn-warning' : 'btn-outline-warning'" @click="toggleNotDoneFilter()">Solo Non Eseguiti</button>
+            </div>
             <div class="col-6 offset-3 mb-3">
-                <ul class="list-group">
+                <ul v-if="noAppliedFilters" class="list-group">
                     <li v-for="(task, i) in tasks" class="list-group-item d-flex justify-content-between align-items-center">
                         <div>
                             <input class="form-check-input me-3" type="checkbox" v-model="task.done" :id="'checkbox '+i" >
@@ -34,10 +39,25 @@
                         </div>
                       <i class="fa-solid fa-trash" @click="removeTask(i)"></i>
                     </li>
-                  </ul>               
-            </div>
-            <div class="col-6 offset-3 d-flex justify-content-center">
-                <button v-if="tasks.length" class="btn btn-danger" @click="clearAllTasks()"><i class="fa-solid fa-trash me-2"></i> Elimina tutto</button>
+                  </ul> 
+                  <ul v-if="doneFilter" class="list-group">
+                    <li v-for="(task, i) in doneFilteredArray" class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <input class="form-check-input me-3" type="checkbox" v-model="task.done" :id="'checkbox '+i" >
+                            <label class="form-check-label" :class="{'done' : task.done}" :for="'checkbox '+i">{{ task.task }}</label>
+                        </div>
+                      <i class="fa-solid fa-trash" @click="removeTask(i)"></i>
+                    </li>
+                  </ul>
+                  <ul v-if="notDoneFilter" class="list-group">
+                    <li v-for="(task, i) in notDoneFilteredArray" class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <input class="form-check-input me-3" type="checkbox" v-model="task.done" :id="'checkbox '+i" >
+                            <label class="form-check-label" :class="{'done' : task.done}" :for="'checkbox '+i">{{ task.task }}</label>
+                        </div>
+                      <i class="fa-solid fa-trash" @click="removeTask(i)"></i>
+                    </li>
+                  </ul>                             
             </div>
         </div>
     </div>

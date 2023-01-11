@@ -37,7 +37,24 @@ const app = Vue.createApp({
                     task: 'Riordinare documenti',
                     done: true,
                 },
-            ]
+            ],
+            doneFilter: false,
+            notDoneFilter: false
+        }
+    },
+    computed: {
+        noAppliedFilters(){
+            return !this.doneFilter && !this.notDoneFilter
+        },
+        doneFilteredArray(){
+            return this.tasks.filter((task) => {
+                return task.done
+            })
+        },
+        notDoneFilteredArray(){
+            return this.tasks.filter((task) => {
+                return !task.done
+            })
         }
     },
     methods:{
@@ -62,7 +79,14 @@ const app = Vue.createApp({
         },
         removeTask(i){
             this.tasks.splice(i, 1);
+        },
+        toggleDoneFilter(){
+            this.doneFilter = !this.doneFilter;
+        },
+        toggleNotDoneFilter(){
+            this.notDoneFilter = !this.notDoneFilter;
         }
+
     }
 });
 
