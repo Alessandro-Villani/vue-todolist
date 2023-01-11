@@ -3,7 +3,7 @@
     transition: color 0.2s;
 }
 
-.fa-trash:hover{
+.list-group .fa-trash:hover{
     color: darkred;
     cursor: pointer;
 }

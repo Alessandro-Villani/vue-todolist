@@ -44,6 +44,9 @@ const app = Vue.createApp({
         clearTaskBox(){
             this.newTask = '';
         },
+        clearAllTasks(){
+            this.tasks = [];
+        },
         addTask(){
             console.log('click');
             if(this.newTask) {
