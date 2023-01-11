@@ -82,9 +82,11 @@ const app = Vue.createApp({
         },
         toggleDoneFilter(){
             this.doneFilter = !this.doneFilter;
+            this.notDoneFilter = false;
         },
         toggleNotDoneFilter(){
             this.notDoneFilter = !this.notDoneFilter;
+            this.doneFilter = false;
         }
 
     }
