@@ -53,7 +53,12 @@ const app = Vue.createApp({
                 }
                 this.tasks.push(addedTask);
                 this.clearTaskBox();
+                this.$refs.input.focus();
+
             }
+        },
+        removeTask(i){
+            this.tasks.splice(i, 1);
         }
     }
 });

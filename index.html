@@ -21,7 +21,7 @@
             <div class="col-6 offset-3 mb-5 text-center"><img src="img/logo.png" alt="boolean-logo" class="img-fluid w-50"></div>
             <div class="col-6 offset-3 mb-3">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Nuovo Task..." v-model.trim="newTask">
+                    <input ref="input" type="text" class="form-control" placeholder="Nuovo Task..." v-model.trim="newTask" @keyup.enter="addTask()">
                     <button class="btn btn-outline-success" type="button" id="button-addon2" @click="addTask()">Aggiungi</button>
                   </div>
             </div>
@@ -29,10 +29,10 @@
                 <ul class="list-group">
                     <li v-for="(task, i) in tasks" class="list-group-item d-flex justify-content-between align-items-center">
                         <div>
-                            <input class="form-check-input me-3" type="checkbox" v-model="task.done" :id="'checkbox '+i">
+                            <input class="form-check-input me-3" type="checkbox" v-model="task.done" :id="'checkbox '+i" >
                             <label class="form-check-label" :class="{'done' : task.done}" :for="'checkbox '+i">{{ task.task }}</label>
                         </div>
-                      <i class="fa-solid fa-trash"></i>
+                      <i class="fa-solid fa-trash" @click="removeTask(i)"></i>
                     </li>
                   </ul>
             </div>
