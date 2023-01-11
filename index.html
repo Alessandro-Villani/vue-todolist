@@ -23,7 +23,12 @@
                 <div class="input-group mb-3">
                     <input ref="input" type="text" class="form-control" placeholder="Nuovo Task..." v-model.trim="newTask" @keyup.enter="addTask()">
                     <button class="btn btn-outline-success" type="button" id="button-addon2" @click="addTask()">Aggiungi</button>
-                  </div>
+                </div>
+                <div class="input-group mb-3" v-if="tasks.length > 1">
+                    <button class="btn btn-outline-danger" type="button" id="button-addon2" @click="clearSearch()"><i class="fa-solid fa-circle-xmark"></i></button>
+                    <input ref="search" class="form-control" type="text" placeholder="Cerca" v-model="searchWord" @keyup.esc="clearSearch()">
+                </div>
+                  
             </div>
             <div v-if="tasks.length" class="col-6 offset-3 d-flex justify-content-center mb-3">
                 <button class="btn btn-danger me-2" @click="clearAllTasks()"><i class="fa-solid fa-trash me-2"></i> Elimina tutto</button>
@@ -32,7 +37,7 @@
             </div>
             <div class="col-6 offset-3 mb-3">
                 <ul v-if="noAppliedFilters" class="list-group">
-                    <li v-for="(task, i) in tasks" class="list-group-item d-flex justify-content-between align-items-center">
+                    <li v-for="(task, i) in filteredArray" class="list-group-item d-flex justify-content-between align-items-center">
                         <div>
                             <input class="form-check-input me-3" type="checkbox" v-model="task.done" :id="'checkbox '+i" >
                             <label class="form-check-label" :class="{'done' : task.done}" :for="'checkbox '+i">{{ task.task }}</label>

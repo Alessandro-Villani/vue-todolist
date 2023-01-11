@@ -39,20 +39,27 @@ const app = Vue.createApp({
                 },
             ],
             doneFilter: false,
-            notDoneFilter: false
+            notDoneFilter: false,
+            searchWord: ''
+            
         }
     },
     computed: {
         noAppliedFilters(){
             return !this.doneFilter && !this.notDoneFilter
         },
-        doneFilteredArray(){
+        filteredArray(){
             return this.tasks.filter((task) => {
+                return task.task.toLowerCase().includes(this.searchWord.toLowerCase());
+            })
+        },
+        doneFilteredArray(){
+            return this.filteredArray.filter((task) => {
                 return task.done
             })
         },
         notDoneFilteredArray(){
-            return this.tasks.filter((task) => {
+            return this.filteredArray.filter((task) => {
                 return !task.done
             })
         }
@@ -87,6 +94,10 @@ const app = Vue.createApp({
         toggleNotDoneFilter(){
             this.notDoneFilter = !this.notDoneFilter;
             this.doneFilter = false;
+        },
+        clearSearch(){
+            this.searchWord = ''
+            this.$refs.search.focus();
         }
 
     }
