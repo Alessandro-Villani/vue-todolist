@@ -26,14 +26,17 @@ const app = Vue.createApp({
             newTask: '',
             tasks: [
                 {
+                    id: 1,
                     task: 'Fare la spesa',
                     done: false,
                 },
                 {
+                    id: 2,
                     task: 'Pulire la cucina',
                     done: false,
                 },
                 {
+                    id: 3,
                     task: 'Riordinare documenti',
                     done: true,
                 },
@@ -76,7 +79,8 @@ const app = Vue.createApp({
             if(this.newTask) {
                 const addedTask = {
                     task: this.newTask,
-                    done: false
+                    done: false,
+                    id: this.tasks.length + 1
                 }
                 this.tasks.push(addedTask);
                 this.clearTaskBox();
@@ -84,8 +88,12 @@ const app = Vue.createApp({
 
             }
         },
-        removeTask(i){
-            this.tasks.splice(i, 1);
+        removeTask(id){
+            this.tasks = this.tasks.filter((task) => {
+                console.log(task.id);
+                console.log(id);
+                return task.id !== id;
+            })
         },
         toggleDoneFilter(){
             this.doneFilter = !this.doneFilter;

@@ -42,7 +42,7 @@
                             <input class="form-check-input me-3" type="checkbox" v-model="task.done" :id="'checkbox '+i" >
                             <label class="form-check-label" :class="{'done' : task.done}" :for="'checkbox '+i">{{ task.task }}</label>
                         </div>
-                      <i class="fa-solid fa-trash" @click="removeTask(i)"></i>
+                      <i class="fa-solid fa-trash" @click="removeTask(task.id)"></i>
                     </li>
                   </ul> 
                   <ul v-if="doneFilter" class="list-group">
@@ -51,7 +51,7 @@
                             <input class="form-check-input me-3" type="checkbox" v-model="task.done" :id="'checkbox '+i" >
                             <label class="form-check-label" :class="{'done' : task.done}" :for="'checkbox '+i">{{ task.task }}</label>
                         </div>
-                      <i class="fa-solid fa-trash" @click="removeTask(i)"></i>
+                      <i class="fa-solid fa-trash" @click="removeTask(task.id)"></i>
                     </li>
                   </ul>
                   <ul v-if="notDoneFilter" class="list-group">
@@ -60,7 +60,7 @@
                             <input class="form-check-input me-3" type="checkbox" v-model="task.done" :id="'checkbox '+i" >
                             <label class="form-check-label" :class="{'done' : task.done}" :for="'checkbox '+i">{{ task.task }}</label>
                         </div>
-                      <i class="fa-solid fa-trash" @click="removeTask(i)"></i>
+                      <i class="fa-solid fa-trash" @click="removeTask(task.id)"></i>
                     </li>
                   </ul>                             
             </div>
